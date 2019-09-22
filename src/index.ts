@@ -30,8 +30,29 @@ async function readData() {
     try {
         await readData();
         const data = JSON.parse(jsonString);
-        console.log('Data read from input ');
-        console.log(data.summary);
+        if (data.vulnerabilities) {
+            console.log('Data read from input ');
+            /*
+            console.log(data[0].name);
+            console.log(data[0].version);
+            console.log(data[0].severity);
+            */
+            var sortOrder = ['h', 'm', 'l'];
+            const sortedVulnerabilities = data.vulnerabilities.sort(function (a, b) {
+                return sortOrder.indexOf(a.severity) - sortOrder.indexOf(b.severity);
+            });
+            /*
+            const mappedList = sortedVulnerabilities.map(e => {
+                return {
+                    title: e.title,
+                    packageVersion: e.version,
+                    priority: e.severity }
+            })
+            */
+            console.log(sortedVulnerabilities[0].description.search("# Remediation"));
+            return;
+        }
+        console.log('No Vulnerabilities Found :)')
 
     } catch (e) {
         console.error(e);
