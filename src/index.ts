@@ -41,15 +41,22 @@ async function readData() {
             const sortedVulnerabilities = data.vulnerabilities.sort(function (a, b) {
                 return sortOrder.indexOf(a.severity) - sortOrder.indexOf(b.severity);
             });
-            /*
+
             const mappedList = sortedVulnerabilities.map(e => {
                 return {
                     title: e.title,
+                    packageName: e.name,
                     packageVersion: e.version,
-                    priority: e.severity }
+                    priority: e.severity,
+                    packageManager: e.packageManager,
+                    from: e.from.join(' > '),
+                    description: e.description
+                }
             })
-            */
-            console.log(sortedVulnerabilities[0].description.search("# Remediation"));
+
+            console.log('Mappeddd ');
+            console.log(mappedList);
+
             return;
         }
         console.log('No Vulnerabilities Found :)')
