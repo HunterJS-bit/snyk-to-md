@@ -35,11 +35,7 @@ async function readData() {
         const data = JSON.parse(jsonString);
         if (data.vulnerabilities) {
             console.log('Data read from input ');
-            /*
-            console.log(data[0].name);
-            console.log(data[0].version);
-            console.log(data[0].severity);
-            */
+
             var sortOrder = ['h', 'm', 'l'];
             const sortedVulnerabilities = data.vulnerabilities.sort(function (a: any, b: any) {
                 return sortOrder.indexOf(a.severity) - sortOrder.indexOf(b.severity);
@@ -57,17 +53,10 @@ async function readData() {
                 }
             })
 
-            let content = `# Snyk Vulnerability Report \n`;
-            mappedList.forEach(el => {
-                content += `### ✗ ${el.title} 
-                - Introduced through: ${el.packageName}
-                - From: ${el.from} 
-                - Package Manager: ${el.packageManager}`;
-
-            });
+            const formatedOutput = formatingUtil.formatSnykReport(mappedList);
 
 
-            fs.writeFile('./test.md', content, (err: any) => {
+            fs.writeFile('./test.md', formatedOutput, (err: any) => {
                 if (err) {
                     console.error(err)
                     return;
