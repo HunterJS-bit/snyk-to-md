@@ -40,6 +40,7 @@ async function readData() {
             const sortedVulnerabilities = data.vulnerabilities.sort(function (a: any, b: any) {
                 return sortOrder.indexOf(a.severity) - sortOrder.indexOf(b.severity);
             });
+
             const mappedList = sortedVulnerabilities.map((e: any) => {
                 const index = e.description.indexOf('## Remediation');
                 const sentence = e.description.substring(index).split('\n\n');
@@ -53,14 +54,14 @@ async function readData() {
                     description: e.description,
                     severity: e.severity.toUpperCase(),
                     references: e.references,
-                    remediation: sentence[1]
+                    remediation: sentence[1],
                 }
             })
 
             const formatedOutput = formatingUtil.formatSnykReport(mappedList);
 
 
-            fs.writeFile('./test.md', formatedOutput, (err: any) => {
+            fs.writeFile('./Snyk_Report.md', formatedOutput, (err: any) => {
                 if (err) {
                     console.error(err)
                     return;
