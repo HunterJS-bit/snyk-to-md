@@ -1,17 +1,5 @@
-interface VulnerablePackage {
-    title?: String
-    packageName?: String,
-    from: String,
-    packageManager: String,
-    severity: String,
-    remediation: String,
-    references: Array<References>,
-}
+import { VulnerablePackage } from '../common/types';
 
-interface References {
-    title: String,
-    url: String,
-}
 
 export function formatSnykReport(vulnerabilities: Array<VulnerablePackage>) {
     let reportContent = ``;
