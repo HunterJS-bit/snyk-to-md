@@ -14,7 +14,7 @@ export function sortMapVulnerabilities(data: any) {
             packageVersion: e.version,
             priority: e.severity,
             packageManager: e.packageManager,
-            from: e.from.join(' > '),
+            from: e.from.map((e: String) => `\`${e}\``).join(' > '),
             description: e.description,
             severity: e.severity.toUpperCase(),
             references: e.references,

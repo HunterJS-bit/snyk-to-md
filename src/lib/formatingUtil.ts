@@ -2,7 +2,8 @@ import { VulnerablePackage } from '../common/types';
 
 
 export function formatSnykReport(vulnerabilities: Array<VulnerablePackage>) {
-    let reportContent = ``;
+    const date = new Date().toLocaleDateString();
+    let reportContent = `# Snyk Report (${date})\n\n`;
     vulnerabilities.forEach(el => {
         const references = el.references;
         let ref = '';
@@ -12,7 +13,7 @@ export function formatSnykReport(vulnerabilities: Array<VulnerablePackage>) {
         reportContent += `### ✗ ${el.title}\n\n`
             + `- Severity: **${el.severity}** \n`
             + `- Package Manager: ${el.packageManager}\n`
-            + `- Vulnerable module: ${el.packageName}\n`
+            + `- Vulnerable module: \`${el.packageName}\`\n`
             + `- From: ${el.from}\n`
             + `- Remediation: ${el.remediation}\n`
             + `- References: \n`
