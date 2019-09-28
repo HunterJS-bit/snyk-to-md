@@ -1,11 +1,13 @@
 /**
- * File model stuff
+ * Reference Interface
  */
 export interface References {
     title: String,
     url: String,
 }
-
+/**
+ *  Vulnerability Interface
+ */
 export interface VulnerablePackage {
     title?: String
     packageName?: String,

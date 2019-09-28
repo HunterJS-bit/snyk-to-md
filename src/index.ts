@@ -8,6 +8,7 @@ const argv = minimist(process.argv.slice(2));
 
 
 let jsonString = '';
+let output = 'Snyk_Report.md';
 
 var rl = readline.createInterface({
     input: process.stdin,
@@ -32,6 +33,10 @@ async function readData() {
 
 (async function () {
     try {
+        if (argv.o) {
+            // output destination
+            output = argv.o;
+        }
         await readData();
         const data = JSON.parse(jsonString);
         if (data.vulnerabilities) {
@@ -41,7 +46,7 @@ async function readData() {
 
             const formatedOutput = formatingUtil.formatSnykReport(mappedList);
 
-            fs.writeFile('./Snyk_Report.md', formatedOutput, (err: any) => {
+            fs.writeFile(output, formatedOutput, (err: any) => {
                 if (err) {
                     console.error(err)
                     return;
