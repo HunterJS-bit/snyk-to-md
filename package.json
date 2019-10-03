@@ -9,7 +9,7 @@
     "license": "MIT",
     "keywords": [],
     "scripts": {
-        "me": "snyk test --json | node ./build/main/index.js",
+        "test-snyk": "snyk test --json | node ./build/main/index.js --o './test.md'",
         "describe": "npm-scripts-info",
         "build": "run-s clean && run-p build:*",
         "build:main": "tsc -p tsconfig.json",
@@ -51,6 +51,9 @@
         "node": ">=8.9"
     },
     "dependencies": {
+        "async": "^3.1.0",
+        "i": "^0.3.6",
+        "npm": "^6.11.3",
         "readline": "^1.3.0",
         "sha.js": "^2.4.11"
     },
