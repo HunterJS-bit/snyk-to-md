@@ -1,4 +1,4 @@
-var sortOrder = ['h', 'm', 'l'];
+var sortOrder = ['high', 'medium', 'low'];
 
 export function sortMapVulnerabilities(data: any) {
     const sortedVulnerabilities = data.sort(function (a: any, b: any) {

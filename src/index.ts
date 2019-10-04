@@ -42,7 +42,6 @@ async function readData() {
         await readData();
         const data = JSON.parse(jsonString);
         if (data.vulnerabilities) {
-            console.log('Data read from input ');
 
             const mappedList = util.sortMapVulnerabilities(data.vulnerabilities);
 
@@ -53,6 +52,7 @@ async function readData() {
                     console.error(err)
                     return;
                 }
+                console.log('Created Report ');
             });
 
 
